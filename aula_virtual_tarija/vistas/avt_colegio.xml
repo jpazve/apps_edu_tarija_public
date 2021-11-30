@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="avt_colegio_vista_formulario" model="ir.ui.view">
+            <field name="name">avt.colegio.vista.formulario</field>
+            <field name="model">avt.colegio</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="nombre_colegio" required="True"/>
+                            <field name="avt_administrador_colegio" required="True"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="avt_colegio_vista_lista" model="ir.ui.view">
+            <field name="name">avt.colegio.vista.lista</field>
+            <field name="model">avt.colegio</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre_colegio"/>
+                    <field name="avt_administrador_colegio"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="avt_colegio_accion" model="ir.actions.act_window">
+            <field name="name">Colegios</field>
+            <field name="res_model">avt.colegio</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <br/>
+                <p class="o_view_nocontent_smiling_face">
+                    Añadir nuevo colegio
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

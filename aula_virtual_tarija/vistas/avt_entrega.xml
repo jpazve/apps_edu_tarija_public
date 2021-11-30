@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="avt_entrega_vista_formulario" model="ir.ui.view">
+            <field name="name">avt.entrega.vista.formulario</field>
+            <field name="model">avt.entrega</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="estudiante_id" required="True"/>
+                            <field name="actividad_id" required="True"/>
+                            <field name="link_documento_online"/>
+                            <field name="documento_local"/>
+                            <field name="comentario" required="True"/>
+                            <field name="observaciones" required="True"/>
+                            <field name="nota" attrs="{'invisible': [('nota', '=', 0)]}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="avt_entrega_vista_lista" model="ir.ui.view">
+            <field name="name">avt.entrega.vista.lista</field>
+            <field name="model">avt.entrega</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="estudiante_id"/>
+                    <field name="nota"/>
+                    <button name="calificar_entrega" string="Calificar" class="btn-primary" type="object"
+                            groups="aula_virtual_tarija.modulo_aula_virtual_tarija_profesor"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

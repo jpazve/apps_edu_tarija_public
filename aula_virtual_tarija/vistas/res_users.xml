@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_users_form_simple_modif_aula_virtual_tarija" model="ir.ui.view">
+        <field name="name">view.users.form.simple.modif.aula.virtual.tarija</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <xpath expr='//notebook' position='attributes'>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr='//notebook' position='before'>
+                <div>
+                    <button name="preference_change_password" type="object" string="Change password" class="btn btn-secondary"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="base.action_res_users_my" model="ir.actions.act_window">
+        <field name="name">Mi Perfil</field>
+    </record>
+
+</odoo>

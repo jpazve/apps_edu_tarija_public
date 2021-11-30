@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="reporte_calificaciones">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2><t t-esc="data.get('curso')"/></h2>
+                <t t-foreach="data.get('resultados_parciales', [])" t-as="resultado_parcial">
+                    <h3><t t-esc="resultado_parcial.get('nombre')"/></h3>
+                    <t t-foreach="resultado_parcial.get('parcial')" t-as="parcial">
+                        <h4><t t-esc="parcial.get('nombre')"/></h4>
+                        <table style="width: 100%">
+                            <tr>
+                                <t t-foreach="data.get('headers', [])" t-as="header">
+                                    <td><t t-esc="header"/></td>
+                                </t>
+                            </tr>
+                            <t t-foreach="parcial.get('notas', [])" t-as="nota_materia">
+                                <tr>
+                                    <t t-foreach="nota_materia" t-as="nota">
+                                        <td><t t-esc="nota"/></td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </table>
+                    </t>
+                </t>
+
+<!--                        <tr>-->
+<!--                           <t t-foreach="parcial.get('notas', [])" t-as="nota">-->
+<!--                               <td><t t-esc="nota"/></td>-->
+<!--                           </t>-->
+<!--                        </tr>-->
+<!--                         </t>-->
+<!--                    </table>-->
+            </div>
+        </t>
+    </template>
+
+</odoo>

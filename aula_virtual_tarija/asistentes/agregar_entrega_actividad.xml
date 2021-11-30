@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="agregar_entrega_actividad_vista_formulario" model="ir.ui.view">
+            <field name="name">agregar.entrega.actividad.vista.formulario</field>
+            <field name="model">agregar.entrega.actividad</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="link_documento_online"/>
+                        <field name="documento_local"/>
+                        <field name="comentario" required="True"/>
+                    </group>
+                    <footer>
+                        <button string="Entrega" name="confirmar_entrega" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="agregar_entrega_actividad_accion" model="ir.actions.act_window">
+            <field name="name">Confirmar Entrega</field>
+            <field name="res_model">agregar.entrega.actividad</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

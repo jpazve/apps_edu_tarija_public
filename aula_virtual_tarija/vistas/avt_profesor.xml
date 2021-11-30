@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="avt_profesor_vista_formulario" model="ir.ui.view">
+            <field name="name">avt.profesor.vista.formulario</field>
+            <field name="model">avt.profesor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nombre_profesor"/>
+                                <field name="contacto_profesor"/>
+                                <field name="fecha_ingreso"/>
+                            </group>
+                            <group>
+                                <field name="nombre_usuario" required="True"/>
+                                <field name="contrasena_usuario" required="True" password="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="avt_profesor_vista_lista" model="ir.ui.view">
+            <field name="name">avt.profesor.vista.lista</field>
+            <field name="model">avt.profesor</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre_profesor"/>
+                    <field name="contacto_profesor"/>
+                    <field name="fecha_ingreso"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="avt_profesor_accion" model="ir.actions.act_window">
+            <field name="name">Profesores</field>
+            <field name="res_model">avt.profesor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <br/>
+                <p class="o_view_nocontent_smiling_face">
+                    Añadir nuevo profesor
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

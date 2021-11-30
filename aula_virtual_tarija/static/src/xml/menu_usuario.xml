@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-extend="UserMenu.Actions">
+        <t t-jquery="a[data-menu='account'], a[data-menu='documentation'], a[data-menu='support'], a[data-menu='shortcuts']">
+            this.remove();
+        </t>
+        <t t-jquery=".dropdown-divider">
+            this.remove();
+        </t>
+    </t>
+
+    <t t-inherit="web.UserMenu.Actions" t-inherit-mode="extension">
+        <xpath expr="//a[@data-menu='settings']" position="replace">
+            <a role="menuitem" href="#" data-menu="settings" class="dropdown-item">Mi Perfil</a>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="avt_actividad_tipo_vista_formulario" model="ir.ui.view">
+            <field name="name">avt.tipo.actividad.vista.formulario</field>
+            <field name="model">avt.tipo.actividad</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nombre_tipo_actividad" required="True"/>
+                                <field name="ponderacion_parcial" required="True"/>
+                            </group>
+                            <group>
+                                <field name="es_examen"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="avt_actividad_tipo_vista_lista" model="ir.ui.view">
+            <field name="name">avt.tipo.actividad.vista.lista</field>
+            <field name="model">avt.tipo.actividad</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre_tipo_actividad"/>
+                    <field name="ponderacion_parcial"/>
+                    <field name="es_examen"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="avt_actividad_tipo_accion" model="ir.actions.act_window">
+            <field name="name">Tipos deActividades</field>
+            <field name="res_model">avt.tipo.actividad</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <br/>
+                <p class="o_view_nocontent_smiling_face">
+                    Añadir nuevo tipo actividad
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

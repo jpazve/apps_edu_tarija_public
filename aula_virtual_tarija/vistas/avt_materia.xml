@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="avt_materia_vista_formulario" model="ir.ui.view">
+            <field name="name">avt.materia.vista.formulario</field>
+            <field name="model">avt.materia</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nombre_materia" required="True"/>
+                                <field name="curso_id" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="profesor_id" required="True"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="actividades" string="Actividades">
+                                <field name="actividad_ids">
+                                    <tree>
+                                        <field name="es_examen" invisible="True"/>
+                                        <field name="nombre_actividad"/>
+                                        <field name="tipo_actividad"/>
+                                        <field name="fecha_limite_entrega"/>
+                                        <button string="Examen" name="accion_examen" type="object"
+                                                attrs="{'invisible': [('es_examen', '=', False)]}" class="btn-primary"
+                                                groups="aula_virtual_tarija.modulo_aula_virtual_tarija_profesor"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="nombre_actividad" required="True"/>
+                                                    <field name="tipo_actividad" required="True"/>
+                                                </group>
+                                                <group>
+                                                    <field name="fecha_limite_entrega" required="True"/>
+                                                </group>
+                                                <field name="descripcion" required="True"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="avt_materia_vista_formulario_profesor" model="ir.ui.view">
+            <field name="name">avt.materia.vista.formulario.profesor</field>
+            <field name="model">avt.materia</field>
+            <field name="inherit_id" ref="avt_materia_vista_formulario"/>
+            <field name="groups_id" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_profesor'))]"/>
+            <field name="arch" type="xml">
+                <field name="nombre_materia" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="profesor_id" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="avt_materia_vista_lista" model="ir.ui.view">
+            <field name="name">avt.materia.vista.lista</field>
+            <field name="model">avt.materia</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre_materia"/>
+                    <field name="curso_id"/>
+                    <field name="profesor_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="avt_materia_accion" model="ir.actions.act_window">
+            <field name="name">Materias</field>
+            <field name="res_model">avt.materia</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <br/>
+                <p class="o_view_nocontent_smiling_face">
+                    Añadir nuevo materia
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

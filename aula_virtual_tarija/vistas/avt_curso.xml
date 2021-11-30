@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="avt_curso_vista_formulario" model="ir.ui.view">
+            <field name="name">avt.curso.vista.formulario</field>
+            <field name="model">avt.curso</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nombre_curso" required="True"/>
+                                <field name="paralelo" required="True"/>
+                                <field name="gestion" required="True"/>
+                            </group>
+                            <group>
+                                <field name="colegio_id" required="True"/>
+                                <field name="tutor_id" required="True"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="estudiantes" string="Estudiantes">
+                                <field name="estudiantes_no_validos" invisible="1"/>
+                                <field name="estudiante_ids" domain="[('id', 'not in', estudiantes_no_validos)]"/>
+                            </page>
+                            <page name="materias" string="Materias">
+                                <field name="materia_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="avt_curso_vista_lista" model="ir.ui.view">
+            <field name="name">avt.curso.vista.lista</field>
+            <field name="model">avt.curso</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre_curso"/>
+                    <field name="paralelo"/>
+                    <field name="gestion"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="avt_curso_accion" model="ir.actions.act_window">
+            <field name="name">Cursos</field>
+            <field name="res_model">avt.curso</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <br/>
+                <p class="o_view_nocontent_smiling_face">
+                    Añadir nuevo curso
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

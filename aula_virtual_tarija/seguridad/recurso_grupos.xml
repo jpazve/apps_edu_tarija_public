@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.module.category" id="modulo_aula_virtual_tarija_categoria">
+            <field name="name">Aula Virtual Tarija</field>
+            <field name="description">Usuarios del aula virtual</field>
+            <field name="sequence">30</field>
+        </record>
+
+        <record id="modulo_aula_virtual_tarija_estudiante" model="res.groups">
+            <field name="name">Estudiante</field>
+            <field name="category_id" ref="modulo_aula_virtual_tarija_categoria"/>
+        </record>
+
+        <record id="modulo_aula_virtual_tarija_profesor" model="res.groups">
+            <field name="name">Profesor</field>
+            <field name="category_id" ref="modulo_aula_virtual_tarija_categoria"/>
+        </record>
+
+        <record id="modulo_aula_virtual_tarija_administrador" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="category_id" ref="modulo_aula_virtual_tarija_categoria"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record id="ir_rule_profesor_solo_ve_cursos_tutor" model="ir.rule">
+            <field name="name">Un Profesor solo tiene acceso a los cursos donde es tutor</field>
+            <field name="model_id" ref="model_avt_curso"/>
+            <field name="groups" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_profesor'))]"/>
+            <field name="domain_force">[('tutor_id', '=', user.avt_usuario_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="ir_rule_profesor_solo_ve_materias_asignadas" model="ir.rule">
+            <field name="name">Un Profesor puede ver las materias que dicta o de su curso bajo tutela</field>
+            <field name="model_id" ref="model_avt_materia"/>
+            <field name="groups" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_profesor'))]"/>
+            <field name="domain_force">['|', ('profesor_id', '=', user.avt_usuario_id.id), ('curso_id.tutor_id', '=', user.avt_usuario_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="ir_rule_profesor_solo_edita_materias_asignadas" model="ir.rule">
+            <field name="name">Un Profesor puede editar las materias que dicta</field>
+            <field name="model_id" ref="model_avt_materia"/>
+            <field name="groups" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_profesor'))]"/>
+            <field name="domain_force">[('profesor_id', '=', user.avt_usuario_id.id)]</field>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="ir_rule_profesor_solo_ver_las_actividades_de_sus_materias" model="ir.rule">
+            <field name="name">Un Profesor puede ver las actividades de sus materias</field>
+            <field name="model_id" ref="model_avt_actividad"/>
+            <field name="groups" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_profesor'))]"/>
+            <field name="domain_force">['|', ('materia_id.profesor_id', '=', user.avt_usuario_id.id), ('materia_id.curso_id.tutor_id', '=', user.avt_usuario_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="ir_rule_profesor_solo_edita_elimina_actividades_asignadas" model="ir.rule">
+            <field name="name">Un Profesor puede editar y/o eliminar las actividades de sus materias</field>
+            <field name="model_id" ref="model_avt_actividad"/>
+            <field name="groups" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_profesor'))]"/>
+            <field name="domain_force">[('materia_id.profesor_id', '=', user.avt_usuario_id.id)]</field>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="ir_rule_estudiante_solo_ve_materias_de_su_curso" model="ir.rule">
+            <field name="name">Un Estudiante solo puede ver las materias de su curso</field>
+            <field name="model_id" ref="model_avt_materia"/>
+            <field name="groups" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_estudiante'))]"/>
+            <field name="domain_force">[('curso_id.estudiante_ids.id', '=', user.avt_usuario_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="ir_rule_estudiante_solo_ve_atividades_de_materias_de_su_curso" model="ir.rule">
+            <field name="name">Un Estudiante solo puede ver las actividades de materias de su curso</field>
+            <field name="model_id" ref="model_avt_actividad"/>
+            <field name="groups" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_estudiante'))]"/>
+            <field name="domain_force">[('materia_id.curso_id.estudiante_ids.id', '=', user.avt_usuario_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="ir_rule_estudiante_solo_ve_entregas_propias" model="ir.rule">
+            <field name="name">Un Estudiante solo puede ver entregas propias</field>
+            <field name="model_id" ref="model_avt_entrega"/>
+            <field name="groups" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_estudiante'))]"/>
+            <field name="domain_force">[('estudiante_id', '=', user.avt_usuario_id.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

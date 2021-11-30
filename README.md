@@ -1,1 +1,1 @@
-# apps_edu_tarija_public
+# apps_edu_tarija

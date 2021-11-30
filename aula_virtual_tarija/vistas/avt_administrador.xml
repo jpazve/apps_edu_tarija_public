@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="avt_administrador_vista_formulario" model="ir.ui.view">
+            <field name="name">avt.administrador.vista.formulario</field>
+            <field name="model">avt.administrador</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nombre_administrador" required="True"/>
+                            </group>
+                            <group>
+                                <field name="nombre_usuario" required="True"/>
+                                <field name="contrasena_usuario" required="True" password="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="avt_administrador_vista_lista" model="ir.ui.view">
+            <field name="name">avt.administrador.vista.lista</field>
+            <field name="model">avt.administrador</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre_administrador"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="avt_administrador_accion" model="ir.actions.act_window">
+            <field name="name">Administradores</field>
+            <field name="res_model">avt.administrador</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <br/>
+                <p class="o_view_nocontent_smiling_face">
+                    Añadir nuevo administrador
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

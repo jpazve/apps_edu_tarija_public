@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="generar_reporte_calificaciones_vista_formulario" model="ir.ui.view">
+            <field name="name">generar.reporte.calificaciones.vista.formulario</field>
+            <field name="model">generar.reporte.calificaciones</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="cronograma_evaluacion_id" required="True"/>
+                        <field name="curso_id" required="True"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="estudiante_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Exportar (PDF)" name="exportar_reporte" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="generar_reporte_calificaciones_accion" model="ir.actions.act_window">
+            <field name="name">Generar Reporte Calificaciones</field>
+            <field name="res_model">generar.reporte.calificaciones</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

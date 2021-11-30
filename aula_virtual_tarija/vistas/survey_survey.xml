@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="survey_form_aula_virtual" model="ir.ui.view">
+        <field name="name">survey.form.aula.virtual</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="candidates"]' position='attributes'>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr='//group[@name="scoring"]/following-sibling::*' position='attributes'>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

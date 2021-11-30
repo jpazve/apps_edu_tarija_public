@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="avt_tipo_actividad_examen" model="avt.tipo.actividad">
+            <field name="nombre_tipo_actividad">Examen</field>
+            <field name="ponderacion_parcial">50</field>
+            <field name="es_examen" eval="True"/>
+        </record>
+
+        <record id="avt_tipo_actividad_tarea" model="avt.tipo.actividad">
+            <field name="nombre_tipo_actividad">Tarea</field>
+            <field name="ponderacion_parcial">25</field>
+            <field name="es_examen" eval="False"/>
+        </record>
+
+        <record id="avt_tipo_actividad_trabajo_investigacion" model="avt.tipo.actividad">
+            <field name="nombre_tipo_actividad">Trabajo de Investigación</field>
+            <field name="ponderacion_parcial">25</field>
+            <field name="es_examen" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

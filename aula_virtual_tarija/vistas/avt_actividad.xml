@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="avt_actividad_vista_formulario" model="ir.ui.view">
+            <field name="name">avt.actividad.vista.formulario</field>
+            <field name="model">avt.actividad</field>
+            <field name="arch" type="xml">
+                <form create="0">
+                    <field name="es_examen" required="True"/>
+                    <header>
+                        <button type="object" name="entrega" string="Entrega" class="btn-primary"
+                                attrs="{'invisible': [('es_examen', '=', True)]}"
+                                groups="aula_virtual_tarija.modulo_aula_virtual_tarija_estudiante"/>
+                        <button type="object" name="dar_examen" string="Dar Examen" class="btn-primary"
+                                attrs="{'invisible': [('es_examen', '=', False)]}"
+                                groups="aula_virtual_tarija.modulo_aula_virtual_tarija_estudiante"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nombre_actividad" required="True"/>
+                                <field name="fecha_limite_entrega" required="True"/>
+                            </group>
+                            <group>
+                                <field name="materia_id" readonly="True"/>
+                                <field name="tipo_actividad" required="True"/>
+                            </group>
+                            <field name="descripcion" required="True"/>
+                        </group>
+                        <group name="entregas" string="Entregas">
+                            <field name="entrega_ids" nolabel="1" readonly="True"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="avt_actividad_vista_formulario_estudiante" model="ir.ui.view">
+            <field name="name">avt.actividad.vista.formulario.estudiante</field>
+            <field name="model">avt.actividad</field>
+            <field name="inherit_id" ref="avt_actividad_vista_formulario"/>
+            <field name="groups_id" eval="[(4, ref('aula_virtual_tarija.modulo_aula_virtual_tarija_estudiante'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="attributes">
+                    <attribute name="edit">0</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="avt_actividad_vista_lista" model="ir.ui.view">
+            <field name="name">avt.actividad.vista.lista</field>
+            <field name="model">avt.actividad</field>
+            <field name="arch" type="xml">
+                <tree create="0">
+                    <field name="nombre_actividad"/>
+                    <field name="materia_id"/>
+                    <field name="tipo_actividad"/>
+                    <field name="fecha_limite_entrega"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="avt_actividad_accion" model="ir.actions.act_window">
+            <field name="name">Actividades</field>
+            <field name="res_model">avt.actividad</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <br/>
+                <p class="o_view_nocontent_smiling_face">
+                    Añadir nuevo actividad
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.menu" id="survey.menu_surveys">
+          <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+        <record model="ir.ui.menu" id="mail.menu_root_discuss">
+          <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+        <menuitem name="Aula Virtual Tarija" id="aula_virtual_tarija_menu_principal"/>
+
+        <menuitem name="Conversaciones" id="action_discuss_tarija" action="mail.action_discuss"
+                  sequence="1" parent="aula_virtual_tarija_menu_principal"/>
+
+        <menuitem name="Administradores" id="avt_administrador_menu" action="avt_administrador_accion"
+                  sequence="2" parent="aula_virtual_tarija_menu_principal"/>
+
+        <menuitem name="Colegios" id="avt_colegio_menu" action="avt_colegio_accion"
+                  sequence="3" parent="aula_virtual_tarija_menu_principal"/>
+
+        <menuitem name="Cursos" id="avt_curso_menu" action="avt_curso_accion"
+                  sequence="4" parent="aula_virtual_tarija_menu_principal"
+                  groups="aula_virtual_tarija.modulo_aula_virtual_tarija_administrador,aula_virtual_tarija.modulo_aula_virtual_tarija_profesor"/>
+
+        <menuitem name="Materias" id="avt_materia_menu" action="avt_materia_accion"
+                  sequence="5" parent="aula_virtual_tarija_menu_principal"/>
+
+        <menuitem name="Actividades" id="avt_actividad_menu" action="avt_actividad_accion"
+                  sequence="6" parent="aula_virtual_tarija_menu_principal"/>
+
+        <menuitem name="Profesores" id="avt_profesor_menu" action="avt_profesor_accion"
+                  sequence="7" parent="aula_virtual_tarija_menu_principal"/>
+
+        <menuitem name="Estudiantes" id="avt_estudiante_menu" action="avt_estudiante_accion"
+                  sequence="8" parent="aula_virtual_tarija_menu_principal"
+                  groups="aula_virtual_tarija.modulo_aula_virtual_tarija_administrador"/>
+
+        <menuitem name="Reportes" id="avt_reportes_menu"
+                  sequence="9" parent="aula_virtual_tarija_menu_principal"
+                  groups="aula_virtual_tarija.modulo_aula_virtual_tarija_administrador"/>
+
+        <menuitem name="Generar Reporte Calificaciones" id="generar_reporte_calificaciones_menu" action="generar_reporte_calificaciones_accion"
+                  sequence="1" parent="avt_reportes_menu"
+                  groups="aula_virtual_tarija.modulo_aula_virtual_tarija_administrador"/>
+
+        <menuitem name="Cronogramas de Evaluacion" id="avt_cronograma_evaluacion_menu" action="avt_cronograma_evaluacion_accion"
+                  sequence="2" parent="avt_reportes_menu"
+                  groups="aula_virtual_tarija.modulo_aula_virtual_tarija_administrador"/>
+
+        <menuitem name="Tipos de Actividades" id="avt_tipo_actividad_menu" action="avt_actividad_tipo_accion"
+                  sequence="3" parent="avt_reportes_menu"
+                  groups="aula_virtual_tarija.modulo_aula_virtual_tarija_administrador"/>
+
+    </data>
+</odoo>

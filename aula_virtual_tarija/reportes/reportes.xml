@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_document_paperformat" model="report.paperformat">
+            <field name="name">DMS Paper Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">70</field>
+            <field name="margin_bottom">50</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">70</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="reporte_calificaciones_accion" model="ir.actions.report">
+            <field name="name">reporte.calificaciones</field>
+            <field name="model">generar.reporte.calificaciones</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">aula_virtual_tarija.reporte_calificaciones</field>
+            <field name="report_file">aula_virtual_tarija.reporte_calificaciones</field>
+            <field name="print_report_name">'reporte_calificaciones'</field>
+            <field name="paperformat_id" ref="report_document_paperformat"/>
+        </record>
+
+    </data>
+</odoo>

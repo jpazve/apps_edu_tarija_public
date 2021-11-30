@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-inherit="mail.DiscussSidebar" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'o_DiscussSidebar_group') and contains(@class, 'o_DiscussSidebar_groupMailbox')]" position="replace"/>
+        <xpath expr="//hr[@class='o_DiscussSidebar_separator']" position="replace"/>
+        <xpath expr="//div[@title='Add or join a channel']" position="replace"/>
+        <xpath expr="//div[@title='Start a conversation']" position="replace"/>
+    </t>
+
+    <t t-inherit="mail.DiscussSidebarItem" t-inherit-mode="extension">
+        <xpath expr="//div[@title='Channel settings']" position="replace"/>
+        <xpath expr="//div[@title='Leave this channel']" position="replace"/>
+    </t>
+
+    <t t-inherit="mail.widgets.Discuss.DiscussControlButtons" t-inherit-mode="extension">
+        <xpath expr="//button[@title='Invite people']" position="replace"/>
+    </t>
+</templates>

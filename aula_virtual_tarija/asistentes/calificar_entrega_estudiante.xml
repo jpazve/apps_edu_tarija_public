@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="calificar_entrega_estudiante_vista_formulario" model="ir.ui.view">
+            <field name="name">calificar.entrega.estudiante.vista.formulario</field>
+            <field name="model">calificar.entrega.estudiante</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="nota" required="True"/>
+                    </group>
+                    <group name="observaciones" string="Observaciones">
+                        <field name="observaciones" nolabel="1"/>
+                    </group>
+                    <footer>
+                        <button string="Confirmar" name="confirmar_calificacion" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="calificar_entrega_estudiante_accion" model="ir.actions.act_window">
+            <field name="name">Calificar Entrega</field>
+            <field name="res_model">calificar.entrega.estudiante</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>
